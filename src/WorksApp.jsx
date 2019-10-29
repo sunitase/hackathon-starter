@@ -1,29 +1,86 @@
 import React, { Component } from 'react';
+const axios = require('axios');
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+  super(props);
+    this.state = {
+      randomKanye: '',
+      randomDog: ''
+    };
 
-        // Make Class Constructor
-        constructor(props) {
-          super(props);
-          // Make State atau scope 
-          this.state = {
-            items: [],
-            isLoaded: false
-          }
-        }
-      
-        componentDidMount() {
-          // GetData with Rest api
-          fetch('https://jsonplaceholder.typicode.com/users')
-            // Promise Function 
-            .then(res => res.json())
-            .then(json => {
-              this.setState({
-                isLoaded: true,
-                items: json,
-              })
-            })
-        }
+    this.handleChange = this.handleChange.bind(this);
+    this.getKanye = this.getKanye.bind(this);
+    this.getDog = this.getDog.bind(this);
+    this.submit = this.submit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  submit() {
+    this.getKanye();
+    this.getDog();
+  }
+
+  getKanye() {
+    const reqURL = 'https://api.kanye.rest/';
+    axios.get(reqURL).then(res => {
+      this.setState({
+        randomKanye: res.data.quote
+      });
+    });
+  }
+
+  getDog() {
+    const reqURL2 = 'https://dog.ceo/api/breeds/image/random';
+    axios.get(reqURL2).then(res => {
+      this.setState({
+        randomDog: res.data.message
+      });
+    });
+  }
+
+render() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1 className='App-title'>Hackathon Random App</h1>
+        <p className='App-intro'>Get a Random Kanye West Quote and Dog Picture at the Click of a Button!</p>
+        <button
+        id='getInfo'
+        className='btn btn primary'
+        onClick={this.submit}
+        >
+          Click Here
+        </button>
+      </header>
+      <div className='container'>
+        <div className='body'>
+          <div
+            name='quote'
+            id='quote'
+            className='container-fluid'
+            onChange={this.handleChange}
+            >
+              Kanye Says:
+              {this.state.randomKanye}
+            </div>
+            <div
+            message='success'
+            className='container-fluid'
+            onChange={this.handleChange}
+            >
+              Dog Pic:
+              <img src={this.state.randomDog}/>
+            </div>
+        </div>
+      </div>
+      </div>
+    );
+  }
+}
       
         render() {
       

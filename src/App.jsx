@@ -6,8 +6,10 @@ class App extends Component {
         super(props);
         this.state = {
             people: [],
-            picture: ''
-
+            picture: '',
+            name: '',
+            numberdisplay: '',
+            number: ''
            };
 }
 
@@ -22,33 +24,34 @@ componentDidMount(){
         
     
 
-        /*fetch("http://api.open-notify.org/astros.json")
+        fetch("http://api.open-notify.org/astros.json")
             .then(response => response.json())
             .then(response => {
-                const {people} = response
+                const {number} = response
+                console.log(response['number'])
                 console.log(response)
-                this.setState({people: people})
-            //.then(data => console.log(data.people[1]))       */   
+                this.setState({numberdisplay: number}) 
+            })
+            
+        }
           
-    }
+    
 
 
 render(){
-    let picture = this.state.picture;
-    let hdurl;
     return(
     <div className="container-fluid">
         <h1>APIs are fun!</h1>
             <div className="row">
                 <div className="col-sm-6">
                     <div>
-                    <p>'NASA's Astronomy Picture of the Day''</p>
+                    <h3>'NASA's Astronomy Picture of the Day''</h3>
                     <img src={this.state.picture} alt="" />
                     </div>
                 </div>
                  <div className="col-sm-6">
-                 <p>Number of people in space </p>
-                     <p>{this.state.spacepeople}</p>
+                 <h3>Number of people in space </h3>
+                     <h4>{this.state.numberdisplay}</h4>
                  </div>
             </div>
     </div>

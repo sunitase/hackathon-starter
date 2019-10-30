@@ -28,9 +28,12 @@ componentDidMount(){
             .then(response => response.json())
             .then(response => {
                 const {number} = response
+               // const {name} = response
                 console.log(response['number'])
+               // console.log(response['name'])
                 console.log(response)
                 this.setState({numberdisplay: number}) 
+               // this.setState({name: name})
             })
             
         }
@@ -41,17 +44,18 @@ componentDidMount(){
 render(){
     return(
     <div className="container-fluid">
-        <h1>APIs are fun!</h1>
+        <h6>APIs are fun!</h6>
             <div className="row">
                 <div className="col-sm-6">
                     <div>
-                    <h3>'NASA's Astronomy Picture of the Day''</h3>
+                    <h6>NASA's Astronomy Picture of the Day</h6>
                     <img src={this.state.picture} alt="" />
                     </div>
                 </div>
                  <div className="col-sm-6">
-                 <h3>Number of people in space </h3>
-                     <h4>{this.state.numberdisplay}</h4>
+                 <h6>We are in space!</h6>
+                 <br></br><br></br>
+                     <h4 id="rcorners2">Number of people in space: {this.state.numberdisplay}</h4>
                  </div>
             </div>
     </div>

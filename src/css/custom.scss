@@ -1,3 +1,49 @@
+
 img {
-    max-width: 100%;
+    max-width: 70%;
+    align-self: center;
+}
+
+body {
+    background-color: rgba(199, 46, 46, 0.288);
+}
+
+h6 {
+    block-size: 2em;
+    width: auto;
+    text-align: center;
+    background-color: rgb(155, 9, 16);
+    color: rgb(212, 184, 184);    
+}
+
+h4 {
+    align-self: center;
+    block-size: 1em;
+    text-align: center;
+    background-color: rgb(155, 9, 16);
+    color: rgb(212, 184, 184);    
+}
+
+#rcorners2 {
+    border-radius: 25px;
+    align-content: center;
+    border: 2px solid rgb(182, 66, 45);
+    padding: 10px; 
+    width: 500px;
+    height: 50px;  
+  }
+
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
 }

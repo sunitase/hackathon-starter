@@ -1,3 +1,6 @@
+//will be using this to learn and practice...
+//my own code is in app which was a nice project 
+// will make further improvements to  that later
 import React, { Component } from 'react';
 const axios = require('axios');
 
